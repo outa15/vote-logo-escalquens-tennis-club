@@ -6,3 +6,34 @@ h1 { margin-top: 20px; }
 .card button { padding:8px 12px; border:none; border-radius:6px; background:#0070f3; color:white; font-size:14px; cursor:pointer; }
 .card button:hover { background:#005acc; }
 #message { margin-top:20px; font-weight:bold; }
+
+.pseudo-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px auto;
+  max-width: 400px; /* largeur max pour desktop */
+  width: 90%;       /* adaptatif sur mobile */
+}
+
+.pseudo-container label {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.pseudo-container input {
+  width: 100%;
+  padding: 12px 16px; /* espace à l'intérieur du champ */
+  font-size: 16px;    /* texte lisible */
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  outline: none;
+  transition: border 0.2s, box-shadow 0.2s;
+}
+
+.pseudo-container input:focus {
+  border-color: #0070f3;
+  box-shadow: 0 0 6px rgba(0, 112, 243, 0.5);
+}
