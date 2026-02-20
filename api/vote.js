@@ -1,8 +1,11 @@
 import { createClient } from "@supabase/supabase-js";
 
-const supabaseUrl = process.env.SUPABASE_URL;
-const supabaseKey = process.env.SUPABASE_ANON_KEY;
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_DEFAULT_KEY;
 const supabase = createClient(supabaseUrl, supabaseKey);
+
+/*NEXT_PUBLIC_SUPABASE_URL=https://ohpsgghkgnubeucbaagw.supabase.co
+NEXT_PUBLIC_SUPABASE_PUBLISHABLE_DEFAULT_KEY=sb_publishable_CXHvKkqMc-mofAAkB2zWPw_6lmZOOZj*/
 
 export default async function handler(req, res) {
   if (req.method !== "POST") return res.status(405).json({error:"Méthode non autorisée"});
