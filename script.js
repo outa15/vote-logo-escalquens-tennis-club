@@ -1,7 +1,8 @@
-async function vote(image) {
+async function vote(image, btn) {
+  const card = btn.closest('.card');
   const pseudoInput = document.getElementById('pseudo');
   const pseudo = pseudoInput.value.trim();
-  const messageEl = document.getElementById('message');
+  const messageEl = card.querySelector('.message-btn'); // message pour ce bouton
 
   if (!pseudo) {
     messageEl.innerText = "⚠️ Merci d’entrer ton pseudo";
@@ -28,12 +29,12 @@ async function vote(image) {
     messageEl.innerText = "✅ Merci pour ton vote !";
     messageEl.classList.add('success');
 
-    // griser les boutons et le champ pseudo
+    // griser tous les boutons et le champ pseudo
     const buttons = document.querySelectorAll('.card button');
-    buttons.forEach(btn => {
-      btn.disabled = true;
-      btn.style.backgroundColor = '#aaa';
-      btn.style.cursor = 'not-allowed';
+    buttons.forEach(b => {
+      b.disabled = true;
+      b.style.backgroundColor = '#aaa';
+      b.style.cursor = 'not-allowed';
     });
 
     pseudoInput.disabled = true;
