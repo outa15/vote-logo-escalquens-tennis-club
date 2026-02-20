@@ -1,20 +1,14 @@
 async function vote(image, btn) {
-  const card = btn.closest('.card');
   const pseudoInput = document.getElementById('pseudo');
-  const pseudo = pseudoInput.value.trim();
-  const messageEl = card.querySelector('.message-btn'); // message pour ce bouton
-
-  if (!pseudo) {
-    messageEl.innerText = "⚠️ Merci d’entrer ton pseudo";
-    messageEl.classList.remove('success');
-    return;
-  }
+  const pseudo = pseudoInput.value.trim(); // peut être vide
+  const card = btn.closest('.card');
+  const messageEl = card.querySelector('.message-btn');
 
   try {
     const res = await fetch('/api/vote', {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({ image, pseudo })
+      body: JSON.stringify({ image, pseudo }) // pseudo vide autorisé
     });
 
     const data = await res.json();
@@ -25,11 +19,10 @@ async function vote(image, btn) {
       return;
     }
 
-    // Vote réussi
+    // ✅ Vote réussi → griser tous les boutons et le champ pseudo
     messageEl.innerText = "✅ Merci pour ton vote !";
     messageEl.classList.add('success');
 
-    // griser tous les boutons et le champ pseudo
     const buttons = document.querySelectorAll('.card button');
     buttons.forEach(b => {
       b.disabled = true;
@@ -37,7 +30,7 @@ async function vote(image, btn) {
       b.style.cursor = 'not-allowed';
     });
 
-    pseudoInput.disabled = true;
+    pseudoInput.disabled = true; // même si vide, on bloque l’édition
     pseudoInput.style.backgroundColor = '#eee';
 
   } catch (err) {
