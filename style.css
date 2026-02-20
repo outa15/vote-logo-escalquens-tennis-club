@@ -7,6 +7,28 @@ h1 { margin-top: 20px; }
 .card button:hover { background:#005acc; }
 #message { margin-top:20px; font-weight:bold; }
 
+#message-container {
+  width: 100%;
+  padding: 15px 0;
+  text-align: center;
+  font-size: 18px;       /* grand texte lisible */
+  font-weight: bold;
+  position: sticky;       /* reste en haut en scroll */
+  top: 0;
+  background-color: #fff; /* fond blanc pour contraste */
+  z-index: 1000;
+}
+
+#message {
+  margin: 0;
+  color: red;             /* message d’erreur par défaut */
+}
+
+/* Si on veut les messages succès verts */
+#message.success {
+  color: green;
+}
+
 .pseudo-container {
   display: flex;
   flex-direction: column;

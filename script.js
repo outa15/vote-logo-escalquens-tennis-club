@@ -1,8 +1,11 @@
 async function vote(image) {
   const pseudoInput = document.getElementById('pseudo');
   const pseudo = pseudoInput.value.trim();
+  const messageEl = document.getElementById('message');
+
   if (!pseudo) {
-    document.getElementById("message").innerText = "⚠️ Merci d’entrer ton pseudo";
+    messageEl.innerText = "⚠️ Merci d’entrer ton pseudo";
+    messageEl.classList.remove('success');
     return;
   }
 
@@ -16,24 +19,29 @@ async function vote(image) {
     const data = await res.json();
 
     if (data.error) {
-      document.getElementById("message").innerText = data.error;
+      messageEl.innerText = data.error;
+      messageEl.classList.remove('success');
       return;
     }
 
-    // ✅ Vote réussi → griser tous les boutons et le champ pseudo
+    // Vote réussi
+    messageEl.innerText = "✅ Merci pour ton vote !";
+    messageEl.classList.add('success');
+
+    // griser les boutons et le champ pseudo
     const buttons = document.querySelectorAll('.card button');
     buttons.forEach(btn => {
       btn.disabled = true;
-      btn.style.backgroundColor = '#aaa'; // gris
+      btn.style.backgroundColor = '#aaa';
       btn.style.cursor = 'not-allowed';
     });
 
-    pseudoInput.disabled = true; // griser le champ pseudo
+    pseudoInput.disabled = true;
     pseudoInput.style.backgroundColor = '#eee';
-    document.getElementById("message").innerText = "✅ Merci pour ton vote !";
 
   } catch (err) {
     console.error(err);
-    document.getElementById("message").innerText = "Erreur serveur inattendue";
+    messageEl.innerText = "Erreur serveur inattendue";
+    messageEl.classList.remove('success');
   }
 }
