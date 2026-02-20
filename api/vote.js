@@ -1,32 +1,32 @@
-import { Redis } from "@upstash/redis";
+import { createClient } from "@supabase/supabase-js";
 
-// Se connecte automatiquement grâce aux variables d'environnement créées par Vercel Marketplace
-const redis = Redis.fromEnv();
+const supabaseUrl = process.env.SUPABASE_URL;
+const supabaseKey = process.env.SUPABASE_ANON_KEY;
+const supabase = createClient(supabaseUrl, supabaseKey);
 
 export default async function handler(req, res) {
-  if (req.method !== "POST") {
-    return res.status(405).json({ error: "Méthode non autorisée" });
-  }
+  if (req.method !== "POST") return res.status(405).json({error:"Méthode non autorisée"});
 
-  // Récupère l'IP du visiteur
-  const ip = req.headers["x-forwarded-for"]?.split(",")[0] || req.socket.remoteAddress;
+  const { image, pseudo } = req.body;
+  if (!image || !pseudo) return res.status(400).json({error:"Vote invalide"});
 
-  const { image } = req.body;
-  if (!image) return res.status(400).json({ error: "Vote invalide" });
+  const ip = req.headers['x-forwarded-for']?.split(',')[0] || req.socket.remoteAddress;
 
-  const ipKey = `ip:${ip}`;
+  // Vérifie si l’IP a déjà voté
+  const { data: existing } = await supabase
+    .from('votes')
+    .select('id')
+    .eq('ip', ip)
+    .single();
 
-  // Vérifie si l'IP a déjà voté
-  const existing = await redis.get(ipKey);
-  if (existing) {
-    return res.status(403).json({ error: "❌ Tu as déjà voté" });
-  }
+  if (existing) return res.status(403).json({error:"❌ Vous avez déjà voté"});
 
-  // Stocke le vote (par IP) avec expiration 7 jours
-  await redis.set(ipKey, image, { ex: 60 * 60 * 24 * 7 });
+  // Enregistre le vote avec le pseudo
+  const { error } = await supabase
+    .from('votes')
+    .insert([{ ip, image_id: image, pseudo }]);
 
-  // Incrémente le compteur pour l'image
-  await redis.incr(`image:${image}`);
+  if (error) return res.status(500).json({error:"Erreur serveur"});
 
-  res.json({ success: true });
+  res.json({success:true});
 }

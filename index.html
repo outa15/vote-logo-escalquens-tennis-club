@@ -10,60 +10,28 @@
 <h1>Vote pour ton image préférée</h1>
 <p>⚠️ Un seul vote par personne</p>
 
+<div>
+    <label for="pseudo">Ton pseudo :</label>
+    <input type="text" id="pseudo" placeholder="Ex : Alice">
+</div>
+
 <div class="gallery">
-    <!-- On répète pour chaque image -->
-    <div class="card">
-        <img src="images/1.jpg" alt="Image 1">
-        <button onclick="vote(1)">Voter</button>
-    </div>
-    <div class="card">
-        <img src="images/2.jpg" alt="Image 2">
-        <button onclick="vote(2)">Voter</button>
-    </div>
-    <div class="card">
-        <img src="images/3.jpg" alt="Image 3">
-        <button onclick="vote(3)">Voter</button>
-    </div>
-    <div class="card">
-        <img src="images/4.jpg" alt="Image 4">
-        <button onclick="vote(4)">Voter</button>
-    </div>
-    <div class="card">
-        <img src="images/5.jpg" alt="Image 5">
-        <button onclick="vote(5)">Voter</button>
-    </div>
-    <div class="card">
-        <img src="images/6.jpg" alt="Image 6">
-        <button onclick="vote(6)">Voter</button>
-    </div>
-    <div class="card">
-        <img src="images/7.jpg" alt="Image 7">
-        <button onclick="vote(7)">Voter</button>
-    </div>
-    <div class="card">
-        <img src="images/8.jpg" alt="Image 8">
-        <button onclick="vote(8)">Voter</button>
-    </div>
-    <div class="card">
-        <img src="images/9.jpg" alt="Image 9">
-        <button onclick="vote(9)">Voter</button>
-    </div>
-    <div class="card">
-        <img src="images/10.jpg" alt="Image 10">
-        <button onclick="vote(10)">Voter</button>
-    </div>
-    <div class="card">
-        <img src="images/11.jpg" alt="Image 11">
-        <button onclick="vote(11)">Voter</button>
-    </div>
-    <div class="card">
-        <img src="images/12.jpg" alt="Image 12">
-        <button onclick="vote(12)">Voter</button>
-    </div>
+    <!-- répète 12 fois -->
+    <div class="card"><img src="images/1.jpg" alt="1"><button onclick="vote(1)">Voter</button></div>
+    <div class="card"><img src="images/2.jpg" alt="2"><button onclick="vote(2)">Voter</button></div>
+    <div class="card"><img src="images/3.jpg" alt="3"><button onclick="vote(3)">Voter</button></div>
+    <div class="card"><img src="images/4.jpg" alt="4"><button onclick="vote(4)">Voter</button></div>
+    <div class="card"><img src="images/5.jpg" alt="5"><button onclick="vote(5)">Voter</button></div>
+    <div class="card"><img src="images/6.jpg" alt="6"><button onclick="vote(6)">Voter</button></div>
+    <div class="card"><img src="images/7.jpg" alt="7"><button onclick="vote(7)">Voter</button></div>
+    <div class="card"><img src="images/8.jpg" alt="8"><button onclick="vote(8)">Voter</button></div>
+    <div class="card"><img src="images/9.jpg" alt="9"><button onclick="vote(9)">Voter</button></div>
+    <div class="card"><img src="images/10.jpg" alt="10"><button onclick="vote(10)">Voter</button></div>
+    <div class="card"><img src="images/11.jpg" alt="11"><button onclick="vote(11)">Voter</button></div>
+    <div class="card"><img src="images/12.jpg" alt="12"><button onclick="vote(12)">Voter</button></div>
 </div>
 
 <p id="message"></p>
-
 <script src="script.js"></script>
 </body>
 </html>
