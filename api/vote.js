@@ -19,7 +19,7 @@ export default async function handler(req, res) {
       .from('votes')
       .select('id')
       .eq('ip', ip)
-      .single();
+      .maybeSingle();
 
     if (existing) return res.status(403).json({error:"❌ Vous avez déjà voté"});
 
