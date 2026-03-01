@@ -39,3 +39,27 @@ async function vote(image, btn) {
     messageEl.classList.remove('success');
   }
 }
+
+document.getElementById("show-results").addEventListener("click", async () => {
+  const table = document.getElementById("results-table");
+  const tbody = table.querySelector("tbody");
+  tbody.innerHTML = "";
+
+  const res = await fetch("/api/results");
+  const results = await res.json();
+
+  results.forEach(r => {
+    const tr = document.createElement("tr");
+
+    tr.innerHTML = `
+      <td>
+        <img src="images/${r.image}.jpg" width="80" />
+      </td>
+      <td>${r.count}</td>
+    `;
+
+    tbody.appendChild(tr);
+  });
+
+  table.style.display = "table";
+});
