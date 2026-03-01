@@ -50,7 +50,11 @@ document.getElementById("show-results").addEventListener("click", async (e) => {
   // Optionnel : cacher le message d'info
   const info = document.querySelector("p");
   if (info) info.style.display = "none";
-
+// Cache les éléments non nécessaires aux résultats
+document.querySelectorAll(".hide-on-results").forEach(el => {
+  el.classList.add("hidden");
+  setTimeout(() => el.style.display = "none", 300);
+});
   // UX bouton
   btn.disabled = true;
   btn.textContent = "Résultats affichés";
@@ -84,8 +88,3 @@ document.getElementById("back-btn").addEventListener("click", () => {
   window.location.reload();
 });
 
-// Cache les éléments non nécessaires aux résultats
-document.querySelectorAll(".hide-on-results").forEach(el => {
-  el.classList.add("hidden");
-  setTimeout(() => el.style.display = "none", 300);
-});
