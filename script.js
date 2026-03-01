@@ -54,7 +54,7 @@ document.getElementById("show-results").addEventListener("click", async (e) => {
   // UX bouton
   btn.disabled = true;
   btn.textContent = "Résultats affichés";
-
+  document.getElementById("back-btn").style.display = "block";
   // Affichage des résultats
   const container = document.getElementById("results-container");
   container.innerHTML = "";
@@ -78,4 +78,8 @@ document.getElementById("show-results").addEventListener("click", async (e) => {
   });
 
   container.style.display = "flex";
+});
+
+document.getElementById("back-btn").addEventListener("click", () => {
+  window.location.reload();
 });
