@@ -160,3 +160,13 @@ h1 { margin-top: 20px; }
   background: #e5e7eb;
   transform: translateY(-1px);
 }
+
+.hide-on-results {
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.hide-on-results.hidden {
+  opacity: 0;
+  transform: translateY(-5px);
+  pointer-events: none;
+}

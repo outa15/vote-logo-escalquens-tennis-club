@@ -83,3 +83,9 @@ document.getElementById("show-results").addEventListener("click", async (e) => {
 document.getElementById("back-btn").addEventListener("click", () => {
   window.location.reload();
 });
+
+// Cache les éléments non nécessaires aux résultats
+document.querySelectorAll(".hide-on-results").forEach(el => {
+  el.classList.add("hidden");
+  setTimeout(() => el.style.display = "none", 300);
+});
