@@ -40,7 +40,22 @@ async function vote(image, btn) {
   }
 }
 
-document.getElementById("show-results").addEventListener("click", async () => {
+document.getElementById("show-results").addEventListener("click", async (e) => {
+  const btn = e.target;
+
+  // 🔒 Cache la zone de vote
+  const voteZone = document.querySelector(".vote-zone");
+  if (voteZone) voteZone.style.display = "none";
+
+  // Optionnel : cacher le message d'info
+  const info = document.querySelector("p");
+  if (info) info.style.display = "none";
+
+  // UX bouton
+  btn.disabled = true;
+  btn.textContent = "Résultats affichés";
+
+  // Affichage des résultats
   const container = document.getElementById("results-container");
   container.innerHTML = "";
 
