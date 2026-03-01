@@ -70,3 +70,46 @@ h1 { margin-top: 20px; }
   border-color: #0070f3;
   box-shadow: 0 0 6px rgba(0, 112, 243, 0.5);
 }
+
+/* Conteneur des résultats */
+.results-container {
+  max-width: 600px;
+  margin: 40px auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Card résultat */
+.result-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 16px 20px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  transition: transform 0.2s ease;
+}
+
+.result-card:hover {
+  transform: scale(1.02);
+}
+
+/* Image */
+.result-card img {
+  width: 80px;
+  border-radius: 8px;
+}
+
+/* Infos */
+.result-info {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.vote-count {
+  font-size: 18px;
+  font-weight: bold;
+}

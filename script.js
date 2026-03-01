@@ -41,25 +41,26 @@ async function vote(image, btn) {
 }
 
 document.getElementById("show-results").addEventListener("click", async () => {
-  const table = document.getElementById("results-table");
-  const tbody = table.querySelector("tbody");
-  tbody.innerHTML = "";
+  const container = document.getElementById("results-container");
+  container.innerHTML = "";
 
   const res = await fetch("/api/results");
   const results = await res.json();
 
-  results.forEach(r => {
-    const tr = document.createElement("tr");
+  results.forEach((r, index) => {
+    const card = document.createElement("div");
+    card.className = "result-card";
 
-    tr.innerHTML = `
-      <td>
-        <img src="images/${r.image}.jpg" width="80" />
-      </td>
-      <td>${r.count}</td>
+    card.innerHTML = `
+      <div class="result-info">
+        <strong>#${index + 1}</strong>
+        <img src="images/${r.image}.jpg" alt="Image ${r.image}">
+      </div>
+      <div class="vote-count">${r.count} votes</div>
     `;
 
-    tbody.appendChild(tr);
+    container.appendChild(card);
   });
 
-  table.style.display = "table";
+  container.style.display = "flex";
 });
